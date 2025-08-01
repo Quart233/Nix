@@ -37,7 +37,21 @@
   # Enable the X11 windowing system.
   services.xserver.enable = true;
   services.xserver.windowManager.dwm.enable = true;
-  services.xserver.videoDrivers = [ "modesetting" ];
+
+  # Backlight
+  services.xserver.deviceSection = ''
+    Option "Backlight" "intel_backlight"
+  '';
+  services.xserver.windowManager.dwm.package = pkgs.dwm.override {
+    patches = [
+      (pkgs.fetchpatch {
+        url = "https://dwm.suckless.org/patches/backlight/dwm-backlight-20241021-351084d.diff";
+        hash = "sha256-ibUkz0M2bp5aYz0xLpwLNOBjyzb0WEkFBU8LPp/bdKU=";
+      })
+    ];
+  };
+
+  services.xserver.videoDrivers = [ "intel" ];
   services.picom.enable = true;
   services.picom.backend = "xrender";
   services.picom.vSync = true;
