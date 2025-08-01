@@ -51,6 +51,11 @@
     ];
   };
 
+  # Swap trackpad left/right button.
+  services.xserver.displayManager.sessionCommands = ''
+    ${pkgs.xorg.xinput}/bin/xinput set-button-map "TPPS/2 ALPS TrackPoint" 3 2 1
+  '';
+
   services.xserver.videoDrivers = [ "intel" ];
   services.picom.enable = true;
   services.picom.backend = "xrender";
