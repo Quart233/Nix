@@ -17,14 +17,23 @@
   networking.hostName = "ThinkpadX1"; # Define your hostname.
   # Pick only one of the below networking options.
   networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
-  # networking.networkmanager.enable = true;  # Easiest to use and most distros use this by default.
-
-  # Set your time zone.
-  time.timeZone = "Asia/Shanghai";
+  networking.wireless.extraConfig = ''
+    ctrl_interface=/run/wpa_supplicant
+    ctrl_interface_group=wheel
+    update_config=1
+  '';
+  networking.wireless.networks."Starbucks" = {
+    auth = ''
+      key_mgmt=NONE
+    '';
+  };
 
   # Configure network proxy if necessary
   networking.proxy.default = "http://127.0.0.1:2080";
-  networking.proxy.noProxy = "127.0.0.1";
+  networking.proxy.noProxy = "127.0.0.1,172.16.0.1,wiportal.wiwide.com,wihome.wiwide.com,starbucks.com.cn";
+
+  # Set your time zone.
+  time.timeZone = "Asia/Shanghai";
 
   # Select internationalisation properties.
   # i18n.defaultLocale = "en_US.UTF-8";
