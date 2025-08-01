@@ -122,12 +122,21 @@
     btop
     rofi
     fish
-    st
     dmenu
     picom
     dwm-status
     fastfetch
     xorg.xbacklight
+
+    # Terminal Patches
+    (st.overrideAttrs (oldAttrs: rec {
+      patches = [
+        (fetchpatch {
+         url = "https://st.suckless.org/patches/scrollback/st-scrollback-0.9.2.diff";
+         sha256 = "sha256-ZypvRONAHS//wnZjivmqpWIqZlKTqAQ0Q8DhQpZVaqU=";
+        })
+      ];
+    }))
   ];
 
   # nix
