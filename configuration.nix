@@ -30,7 +30,7 @@
 
   # Configure network proxy if necessary
   networking.proxy.default = "http://127.0.0.1:2080";
-  networking.proxy.noProxy = "127.0.0.1,172.16.0.1,wiportal.wiwide.com,wihome.wiwide.com,starbucks.com.cn";
+  networking.proxy.noProxy = "127.0.0.1,static.wiwide.com,wiportal.wiwide.com,wihome.wiwide.com,starbucks.com.cn";
 
   # Set your time zone.
   time.timeZone = "Asia/Shanghai";
