@@ -129,6 +129,9 @@
   # OpenSSH
   services.openssh.enable = true;
 
+  # Power Management
+  services.upower.enable = true;
+
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.kuaizi = {
     isNormalUser = true;
