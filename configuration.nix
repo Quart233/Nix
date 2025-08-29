@@ -129,15 +129,16 @@
   # OpenSSH
   services.openssh.enable = true;
 
-  # Power Management
-  services.upower.enable = true;
-
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.kuaizi = {
     isNormalUser = true;
     extraGroups = [ "wheel" ]; # Enable ‘sudo’ for the user.
     packages = with pkgs; [
       tree
+      helm
+      tmux
+      k9s
+      kubectl
       ncdu
       duf
       yazi
@@ -145,6 +146,7 @@
       deno
       brave
       chromium
+      vscode
       sublime4
       sublime-merge
     ];
@@ -162,10 +164,13 @@
     btop
     rofi
     fish
+    scrot
     dmenu
     picom
-    dwm-status
+    acpi
+    upower
     fastfetch
+    dwm-status
     xorg.xbacklight
 
     # Terminal Patches
