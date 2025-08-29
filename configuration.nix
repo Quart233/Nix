@@ -54,6 +54,13 @@
     ];
   };
 
+  # Fonts
+  fonts.packages = with pkgs; [
+     nerd-fonts.jetbrains-mono
+     noto-fonts noto-fonts-cjk-sans noto-fonts-extra
+  ];
+
+
   environment.sessionVariables = {
     GTK_IM_MODULE = "fcitx";
     QT_IM_MODULE = "fcitx";
