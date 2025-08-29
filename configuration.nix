@@ -95,8 +95,10 @@
   services.picom.enable = true;
   services.picom.backend = "xrender";
   services.picom.vSync = true;
+
+  # DWM Status
   services.dwm-status.enable = true;
-  services.dwm-status.order = ["audio" "backlight" "time"];
+  services.dwm-status.order = ["time" "battery"];
 
   # VA-API
   hardware.graphics.extraPackages = with pkgs; [
