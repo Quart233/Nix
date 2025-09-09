@@ -29,7 +29,7 @@
     ];
 
   # Define your disk.
-  disko.devices.disk.main.device = "/dev/disk/by-uuid/[DeviceID]";
+  # disko.devices.disk.main.device = "/dev/disk/by-uuid/[DeviceID]";
 
   # Define your hostname.
   networking.hostName = "ThinkpadX1";
