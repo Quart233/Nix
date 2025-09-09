@@ -7,16 +7,14 @@
 {
   disko.devices = {
     disk = {
-      main = {
+      nvme = {
         type = "disk";
         content = {
           type = "gpt";
           partitions = {
-            boot = {
-              size = "1M";
-              type = "EF02"; # for grub MBR
-            };
             ESP = {
+              priority = 1;
+              name = "ESP";
               size = "1G";
               type = "EF00";
               content = {
@@ -26,12 +24,39 @@
                 mountOptions = [ "umask=0077" ];
               };
             };
+            swap = {
+              size = "8G";
+              content = {
+                type = "swap";
+                discardPolicy = "both";
+                resumeDevice = true; # resume from hiberation from this device
+              };
+            };
             root = {
               size = "100%";
               content = {
-                type = "filesystem";
-                format = "ext4";
-                mountpoint = "/";
+                type = "btrfs";
+                extraArgs = [ "-f" ]; # Override existing partition
+                # Subvolumes must set a mountpoint in order to be mounted,
+                # unless their parent is mounted
+                subvolumes = {
+                  "@" = {
+                    mountpoint = "/";
+                  };
+
+                  "@nix" = {
+                    mountOptions = [
+                      "compress=zstd"
+                      "noatime"
+                    ];
+                    mountpoint = "/nix";
+                  };
+
+                  "@home" = {
+                    mountOptions = [ "compress=zstd" ];
+                    mountpoint = "/home";
+                  };
+                };
               };
             };
           };
