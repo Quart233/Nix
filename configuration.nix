@@ -55,6 +55,7 @@
     neovim
 
     # Hardware Tools
+    nvme
     btop
     acpi
     fastfetch
