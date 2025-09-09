@@ -9,7 +9,9 @@
     [
       # Include the results of the hardware scan.
       ./hardware-configuration.nix
-      ./modules/virtualisation.nix
+
+      # Disk layout & network
+      ./modules/disko.nix
       ./modules/networking.nix
 
       # Preferences
@@ -17,11 +19,17 @@
       ./modules/i18n.nix
       ./modules/services.nix
 
-      # Window Manager Inputs
+      # WM Backlight & Inputs
       ./modules/dwm.nix
       ./modules/libinput.nix
       ./modules/backlight.nix
+
+      # Advanced
+      ./modules/virtualisation.nix
     ];
+
+  # Define your disk.
+  disko.devices.disk.main.device = "/dev/disk/by-uuid/[DeviceID]";
 
   # Define your hostname.
   networking.hostName = "ThinkpadX1";
