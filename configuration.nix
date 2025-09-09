@@ -57,7 +57,6 @@
     # Hardware Tools
     btop
     acpi
-    upower
     fastfetch
     smartmontools
   ];
