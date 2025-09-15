@@ -7,32 +7,32 @@
 {
   imports =
     [
-      # Include the results of the hardware scan.
-      ./hardware-configuration.nix
-
-      # Disk layout & network
-      ./modules/disko.nix
+      ./hardware-configuration.nix # Include the results of the hardware scan.
+      ./impermanence.nix # Manual Import (https://github.com/nix-community/impermanence)
       ./modules/networking.nix
-
-      # Preferences
-      ./modules/user.nix
-      ./modules/i18n.nix
-      ./modules/services.nix
 
       # WM Backlight & Inputs
       ./modules/dwm.nix
       ./modules/libinput.nix
       ./modules/backlight.nix
 
-      # Advanced
-      ./modules/virtualisation.nix
-    ];
+      # Preferences (post-install)
+      ./modules/user.nix
+      ./modules/i18n.nix
 
-  # Define your disk.
-  # disko.devices.disk.nvme.device = "/dev/disk/by-uuid/[DeviceID]";
+      # Advanced (post-install)
+      ./modules/snapper.nix
+      ./modules/podman.nix
+    ];
 
   # Define your hostname.
   networking.hostName = "ThinkpadX1";
+
+  # Define a user account. Don't forget to set a password with ‘passwd’.
+  users.users.kuaizi = {
+    isNormalUser = true;
+    extraGroups = [ "wheel" ]; # Enable ‘sudo’ for the user.
+  };
 
   # OpenSSH
   services.openssh.enable = true;
@@ -43,12 +43,6 @@
 
   # Set your time zone.
   time.timeZone = "Asia/Shanghai";
-
-  # VA-API
-  hardware.graphics.extraPackages = with pkgs; [
-    intel-media-driver
-    intel-compute-runtime
-  ];
 
   programs.firefox.enable = true;
 
@@ -63,16 +57,25 @@
     neovim
 
     # Hardware Tools
-    nvme
+    htop
     btop
     acpi
-    fastfetch
+    nvme-cli
     smartmontools
+
+    # Utillity
+    duf
+    tmux
+    yazi
+    ncdu
+    snapper
+    syslinux
+    fastfetch
   ];
 
   # nix
   # nix.settings.substituters = [ "https://mirrors.tuna.tsinghua.edu.cn/nix-channel/store" ];
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
+  # nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
   system.stateVersion = "25.05"; # Did you read the comment?
 }

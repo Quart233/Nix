@@ -5,6 +5,8 @@
 
   # Enable the X11 windowing system.
   services.xserver.enable = true;
+  services.displayManager.autoLogin.enable = true;
+  services.displayManager.autoLogin.user = "kuaizi";
   services.xserver.windowManager.dwm.enable = true;
 
   # DWM Status
@@ -18,6 +20,7 @@
 
   environment.systemPackages = with pkgs; [
     # WM Utils
+    st
     rofi
     scrot
     dmenu
@@ -25,13 +28,13 @@
     dwm-status
 
     # Terminal Patches
-    (st.overrideAttrs (oldAttrs: rec {
-      patches = [
-        (fetchpatch {
-         url = "https://st.suckless.org/patches/scrollback/st-scrollback-0.9.2.diff";
-         sha256 = "sha256-ZypvRONAHS//wnZjivmqpWIqZlKTqAQ0Q8DhQpZVaqU=";
-        })
-      ];
-    }))
+    # (st.overrideAttrs (oldAttrs: rec {
+    #   patches = [
+    #     (fetchpatch {
+    #      url = "https://st.suckless.org/patches/scrollback/st-scrollback-0.9.2.diff";
+    #      sha256 = "sha256-ZypvRONAHS//wnZjivmqpWIqZlKTqAQ0Q8DhQpZVaqU=";
+    #     })
+    #   ];
+    # }))
   ];
 }
