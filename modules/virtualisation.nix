@@ -14,6 +14,12 @@
     };
   };
 
+  virtualisation.containers.storage.settings.storage = {
+    driver = "btrfs";
+    runroot = "/run/podman";
+    graphroot =  "/var/lib/containers/storage";
+  };
+
   environment.systemPackages = with pkgs; [
     # Container Tools
     dive # look into docker image layers
