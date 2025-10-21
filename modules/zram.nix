@@ -12,6 +12,11 @@
     writebackDevice = "/dev/nvme0n1p2";  # Backing block device (unformatted)
   };
 
+  swapDevices = [{
+    device = "/dev/nvme0n1p2";
+    options = [ "discard" ];  # Or "discard=once" for one-time trim
+  }];
+
   boot.kernel.sysctl."vm.swappiness" = 10;  # Or 1 for minimal swapping
 
   boot.kernelParams = [
