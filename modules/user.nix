@@ -4,37 +4,31 @@
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.kuaizi = {
     packages = with pkgs; [
-      tree
+      # Utillity
+      duf
       tmux
       ncdu
-      duf
-      yazi
-      pwgen
+      snapper
+      fastfetch
 
       # Browser
       brave
-      chromium
 
       # Kubernetes
       k9s
-      lens
       kubectl
-      kubernetes-helm
-
-      # Remote
-      rustdesk
 
       # Developer
       deno
       vscode
-      sublime4
-      sublime-merge
+
+      # Hardware Tools
+      htop
+      btop
+      acpi
     ];
   };
 
   # nixpkgs
   nixpkgs.config.allowUnfree = true;
-  nixpkgs.config.permittedInsecurePackages = [
-    "openssl-1.1.1w"
-  ];
 }

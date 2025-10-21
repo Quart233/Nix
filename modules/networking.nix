@@ -14,7 +14,7 @@
   };
 
   # Configure network proxy if necessary
-  networking.proxy.default = "http://127.0.0.1:2080";
+  networking.proxy.default = "http://192.168.31.129:2080";
   networking.proxy.noProxy = "127.0.0.1,static.wiwide.com,wiportal.wiwide.com,wihome.wiwide.com,starbucks.com.cn";
 
   networking.extraHosts =

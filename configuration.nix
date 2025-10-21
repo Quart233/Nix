@@ -8,25 +8,25 @@
   imports =
     [
       ./hardware-configuration.nix # Include the results of the hardware scan.
-      ./impermanence.nix # Manual Import (https://github.com/nix-community/impermanence)
+      # ./impermanence.nix # Manual Import (https://github.com/nix-community/impermanence)
       ./modules/networking.nix
 
       # WM Backlight & Inputs
       ./modules/dwm.nix
-      ./modules/libinput.nix
-      ./modules/backlight.nix
+      # ./modules/libinput.nix
+      # ./modules/backlight.nix
 
       # Preferences (post-install)
-      ./modules/user.nix
-      ./modules/i18n.nix
+      # ./modules/user.nix
+      # ./modules/i18n.nix
 
       # Advanced (post-install)
-      ./modules/snapper.nix
-      ./modules/podman.nix
+      # ./modules/snapper.nix
+      # ./modules/podman.nix
     ];
 
   # Define your hostname.
-  networking.hostName = "ThinkpadX1";
+  networking.hostName = "Z16";
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.kuaizi = {
@@ -49,28 +49,11 @@
   # List packages installed in system profile.
   # You can use https://search.nixos.org/ to find more packages (and options).
   environment.systemPackages = with pkgs; [
-    vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
     git
     wget
     curl
     fish
     neovim
-
-    # Hardware Tools
-    htop
-    btop
-    acpi
-    nvme-cli
-    smartmontools
-
-    # Utillity
-    duf
-    tmux
-    yazi
-    ncdu
-    snapper
-    syslinux
-    fastfetch
   ];
 
   # nix
