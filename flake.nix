@@ -23,7 +23,7 @@
         specialArgs = { inherit NixVirt; };
 
         modules = [
-          ./modules/libvirtd.nix
+          ./configuration.nix
 
           # ---- Import the NixVirt module ----
           NixVirt.nixosModules.default
