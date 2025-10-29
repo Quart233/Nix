@@ -8,6 +8,7 @@
   imports =
     [
       ./hardware-configuration.nix # Include the results of the hardware scan.
+      ./modules/zram.nix
       ./modules/networking.nix
 
       # WM Backlight & Inputs
@@ -36,7 +37,6 @@
   # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
-  boot.kernelParams = [ "quiet" "splash" "systemd.swap=0" ]; # Disable GPT swap generator.
 
   # Set your time zone.
   time.timeZone = "Asia/Shanghai";
