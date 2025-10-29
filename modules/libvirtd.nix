@@ -46,14 +46,27 @@ in
     connections."qemu:///system" = {
       pools = [
         {
+          # ... pool definition ...
           definition = NixVirt.lib.pool.writeXML {
             name = "btrfs-pool";
             uuid = poolUUID;
-            type = "dir";               # we mount the FS ourselves → "dir"
+            type = "dir";  # Use "dir" for pre-mounted or "fs" for block.
             target.path = "/var/lib/libvirt/btrfs-pool";
           };
-          active  = true;
-          restart = true;             # restart libvirtd if definition changes
+          active = true;
+          restart = true;  # Restart if definition changes
+
+          # ... volume definition ...
+          volumes = [
+            {
+              present = true;
+              definition = NixVirt.lib.volume.writeXML {
+                name = "vm-disk.qcow2";
+                capacity = { count = 20; unit = "GiB"; };
+                format.type = "qcow2";  # Recommended for VMs
+              };
+            }
+          ];
         }
       ];
     };
