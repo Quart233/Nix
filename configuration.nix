@@ -8,18 +8,13 @@
   imports =
     [
       ./hardware-configuration.nix # Include the results of the hardware scan.
-      # ./impermanence.nix # Manual Import (https://github.com/nix-community/impermanence)
-      ./modules/zram.nix
       ./modules/networking.nix
 
       # WM Backlight & Inputs
       ./modules/dwm.nix
-      # ./modules/libinput.nix
-      # ./modules/backlight.nix
 
       # Preferences (post-install)
-      # ./modules/user.nix
-      # ./modules/i18n.nix
+      ./modules/i18n.nix
 
       # Advanced (post-install)
       # ./modules/snapper.nix
@@ -41,6 +36,7 @@
   # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
+  boot.kernelParams = [ "quiet" "splash" "systemd.swap=0" ]; # Disable GPT swap generator.
 
   # Set your time zone.
   time.timeZone = "Asia/Shanghai";
@@ -55,6 +51,7 @@
     curl
     fish
     neovim
+    pciutils
   ];
 
   # nix
