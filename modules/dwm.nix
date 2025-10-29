@@ -13,6 +13,7 @@
   services.xserver.windowManager.dwm.package = pkgs.dwm.override {
     patches = with pkgs; [
       ../patches/dwm-backlight.diff
+      ../patches/dwm-noborder-6.2.diff
     ];
   };
 
