@@ -5,10 +5,11 @@
   users.users.kuaizi = {
     packages = with pkgs; [
       # Utillity
+      pv
       duf
+      tree
       tmux
       ncdu
-      snapper
       fastfetch
 
       # Browser
@@ -21,11 +22,18 @@
       # Developer
       deno
       vscode
+      zed-editor # Build from source.
+
+      # Knowlege Base
+      obsidian
 
       # Hardware Tools
       htop
       btop
-      acpi
+      hwloc
+      nvme-cli
+      powertop
+      nvtopPackages.amd
     ];
   };
 
