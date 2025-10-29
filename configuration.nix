@@ -12,8 +12,6 @@
 
       # WM Backlight & Inputs
       ./modules/dwm.nix
-      ./modules/libinput.nix
-      ./modules/backlight.nix
 
       # Preferences (post-install)
       ./modules/user.nix
