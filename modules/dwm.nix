@@ -36,7 +36,7 @@
 
   # Swap trackpad left/right button.
   services.xserver.displayManager.sessionCommands = ''
-    ${pkgs.xorg.xinput}/bin/xinput set-button-map "TPPS/2 ALPS TrackPoint" 3 2 1
+    ${pkgs.xorg.xinput}/bin/xinput set-button-map "TPPS/2 Elan TrackPoint" 3 2 1
   '';
 
   environment.systemPackages = with pkgs; [
