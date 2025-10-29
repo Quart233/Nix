@@ -39,6 +39,7 @@
   # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
+  boot.kernelParams = [ "quiet" "splash" "systemd.swap=0" ]; # Disable GPT swap generator.
 
   # Set your time zone.
   time.timeZone = "Asia/Shanghai";
