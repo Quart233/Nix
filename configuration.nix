@@ -8,7 +8,6 @@
   imports =
     [
       ./hardware-configuration.nix # Include the results of the hardware scan.
-      ./impermanence.nix # Manual Import (https://github.com/nix-community/impermanence)
       ./modules/networking.nix
 
       # WM Backlight & Inputs
