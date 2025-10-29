@@ -27,12 +27,6 @@
   services.picom.backend = "xrender";
   services.picom.vSync = true;
 
-  # Backlight
-  services.xserver.videoDrivers = [ "intel" ];
-  services.xserver.deviceSection = ''
-    Option "Backlight" "intel_backlight"
-  '';
-
   # Enable touchpad support (enabled default in most desktopManager).
   services.libinput.enable = true;
   services.libinput.touchpad = {
@@ -53,7 +47,7 @@
     dmenu
     picom
     dwm-status
-    xorg.xbacklight
+    brightnessctl
 
     # Terminal Patches
     # (st.overrideAttrs (oldAttrs: rec {
