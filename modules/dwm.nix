@@ -2,6 +2,7 @@
 
 {
   services.xserver.desktopManager.runXdgAutostartIfNone = true;
+  services.xserver.desktopManager.wallpaper.mode = "tile";
 
   # Enable the X11 windowing system.
   services.xserver.enable = true;
