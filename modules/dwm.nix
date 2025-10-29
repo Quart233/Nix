@@ -7,7 +7,14 @@
   services.xserver.enable = true;
   services.displayManager.autoLogin.enable = true;
   services.displayManager.autoLogin.user = "kuaizi";
+
+  # DWM package
   services.xserver.windowManager.dwm.enable = true;
+  services.xserver.windowManager.dwm.package = pkgs.dwm.override {
+    patches = with pkgs; [
+      ../patches/dwm-backlight.diff
+    ];
+  };
 
   # DWM Status
   services.dwm-status.enable = true;
@@ -18,6 +25,12 @@
   services.picom.backend = "xrender";
   services.picom.vSync = true;
 
+  # Backlight
+  services.xserver.videoDrivers = [ "intel" ];
+  services.xserver.deviceSection = ''
+    Option "Backlight" "intel_backlight"
+  '';
+
   environment.systemPackages = with pkgs; [
     # WM Utils
     st
@@ -26,6 +39,7 @@
     dmenu
     picom
     dwm-status
+    xorg.xbacklight
 
     # Terminal Patches
     # (st.overrideAttrs (oldAttrs: rec {
