@@ -14,7 +14,6 @@
       ./modules/dwm.nix
 
       # Preferences (post-install)
-      ./modules/user.nix
       ./modules/i18n.nix
 
       # Advanced (post-install)
