@@ -10,6 +10,7 @@
       ./hardware-configuration.nix # Include the results of the hardware scan.
       ./modules/zram.nix
       ./modules/udev.nix
+      ./modules/powersave.nix
       ./modules/networking.nix
 
       # WM Backlight & Inputs
