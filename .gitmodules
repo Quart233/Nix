@@ -1,0 +1,3 @@
+[submodule "flakes/NixVirt"]
+	path = flakes/NixVirt
+	url = https://github.com/AshleyYakeley/NixVirt.git
