@@ -63,7 +63,13 @@
     curl
     fish
     neovim
+    busybox
     pciutils
+    compsize
+    alsa-utils
+    libva-utils
+    exfatprogs
+    smartmontools
   ];
 
   # nix
