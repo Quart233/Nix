@@ -24,6 +24,7 @@
       ./modules/snapper.nix
       ./modules/podman.nix
       ./modules/libvirtd.nix
+      ./modules/windows10.nix
     ];
 
   # Define your hostname.
