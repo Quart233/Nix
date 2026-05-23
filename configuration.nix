@@ -41,6 +41,13 @@
   # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
+  boot.kernelParams = [
+    "hugepagesz=1G"
+    "hugepages=16"
+    "amd_iommu=on"
+    "iommu=pt"
+    "vfio-pci.ids=1002:743f"
+  ];
 
   # Set your time zone.
   time.timeZone = "Asia/Shanghai";
