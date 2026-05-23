@@ -6,7 +6,7 @@
 
     # ---- NixVirt (the module that lets you write pools/volumes in Nix) ----
     NixVirt = {
-      url = "https://flakehub.com/f/AshleyYakeley/NixVirt/0.6.0.tar.gz";
+      url = "path:/etc/nixos/flakes/NixVirt";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
