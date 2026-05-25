@@ -2,7 +2,7 @@
   description = "NixOS with libvirt + BTRFS storage pool";
 
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/25.05";
+    nixpkgs.url = "github:NixOS/nixpkgs/25.11";
 
     # ---- NixVirt (the module that lets you write pools/volumes in Nix) ----
     NixVirt = {
