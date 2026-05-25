@@ -20,9 +20,19 @@
     graphroot =  "/var/lib/containers/storage";
   };
 
+  virtualisation.containers.registries = {
+    insecure = [ "harbor.r720" ];
+  };
+
+  users.extraUsers.kuaizi = {
+    subUidRanges = [{ startUid = 100000; count = 65536; }];
+    subGidRanges = [{ startGid = 100000; count = 65536; }];
+  };
+
   environment.systemPackages = with pkgs; [
     # Container Tools
     dive # look into docker image layers
+    distrobox
     podman-tui # status of containers in the terminal
     docker-compose # docker compose support.
   ];
