@@ -11,6 +11,7 @@
       ./hardware-configuration.nix # Include the results of the hardware scan.
       ./modules/zram.nix
       ./modules/udev.nix
+      ./modules/direnv.nix
       ./modules/powersave.nix
       ./modules/networking.nix
 
