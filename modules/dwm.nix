@@ -6,10 +6,7 @@
 
   # Enable the X11 windowing system.
   services.xserver.enable = true;
-  services.displayManager.autoLogin.enable = true;
-  services.displayManager.autoLogin.user = "kuaizi";
-
-  # DWM package
+  services.xserver.dpi = 144;
   services.xserver.windowManager.dwm.enable = true;
   services.xserver.windowManager.dwm.package = pkgs.dwm.override {
     patches = with pkgs; [
@@ -18,14 +15,24 @@
     ];
   };
 
+  # Auto Login
+  services.displayManager.autoLogin.enable = true;
+  services.displayManager.autoLogin.user = "kuaizi";
+
   # DWM Status
   services.dwm-status.enable = true;
-  services.dwm-status.order = ["time" "battery"];
+  services.dwm-status.settings.order = ["time" "battery"];
 
   # Compositor
   services.picom.enable = true;
   services.picom.backend = "xrender";
   services.picom.vSync = true;
+
+  # Backlight
+  services.xserver.videoDrivers = ["amdgpu"];
+  services.xserver.deviceSection = ''
+    Option "Backlight" "amdgpu_bl2"
+  '';
 
   # Enable touchpad support (enabled default in most desktopManager).
   services.libinput.enable = true;
@@ -61,6 +68,7 @@
     picom
     dwm-status
     brightnessctl
+    xorg.xmodmap
 
     # Terminal Patches
     # (st.overrideAttrs (oldAttrs: rec {
