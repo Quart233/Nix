@@ -4,8 +4,8 @@
   zramSwap.enable = true;
 
   zramSwap = {
-    algorithm = "zstd";
-    memoryPercent = 25;  # Use up to 25% of RAM
+    algorithm = "lz4";
+    memoryPercent = 75;  # Use up to 25% of RAM
     priority = 100;      # Prefer over disk swap
     writebackDevice = "/dev/nvme0n1p2";
   };
