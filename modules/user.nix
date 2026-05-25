@@ -7,13 +7,21 @@
       # Utillity
       pv
       duf
-      tree
       tmux
+      croc
       ncdu
+      scrcpy
+      sysstat
       fastfetch
+      qbittorrent-enhanced
 
       # Browser
       brave
+      tradingview
+
+      # KG
+      obsidian
+      protege
 
       # Kubernetes
       k9s
@@ -22,7 +30,10 @@
       # Developer
       deno
       vscode
+      phpactor
       zed-editor # Build from source.
+      intelephense
+      sublime-merge
 
       # Jetbrains
       (jetbrains.datagrip.overrideAttrs (oldAttrs: {
