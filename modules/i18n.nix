@@ -14,21 +14,17 @@
     enable = true;
     type = "fcitx5";
     fcitx5.addons = with pkgs; [
-      fcitx5-chinese-addons
       fcitx5-gtk
-      fcitx5-configtool
+      fcitx5-nord
+      kdePackages.fcitx5-qt
+      kdePackages.fcitx5-configtool
+      kdePackages.fcitx5-chinese-addons
     ];
-  };
-
-  environment.sessionVariables = {
-    GTK_IM_MODULE = "fcitx";
-    QT_IM_MODULE = "fcitx";
-    XMODIFIERS = "@im=fcitx";
   };
 
   # Fonts
   fonts.packages = with pkgs; [
      nerd-fonts.jetbrains-mono
-     noto-fonts noto-fonts-cjk-sans noto-fonts-extra
+     noto-fonts noto-fonts-cjk-sans
   ];
 }

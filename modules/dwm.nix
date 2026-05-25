@@ -34,10 +34,23 @@
     naturalScrolling = true;
   };
 
+  environment.sessionVariables = {
+    GTK_IM_MODULE = "fcitx";
+    QT_IM_MODULE = "fcitx";
+    QT_AUTO_SCREEN_SCALE_FACTOR = "0";
+  };
+
   # Swap trackpad left/right button.
   services.xserver.displayManager.sessionCommands = ''
     ${pkgs.xorg.xinput}/bin/xinput set-button-map "TPPS/2 Elan TrackPoint" 3 2 1
   '';
+    # export QT_PLUGIN_PATH="${pkgs.kdePackages.fcitx5-qt}/lib/qt-6/plugins"
+    # sleep 5 && ${pkgs.xorg.xmodmap}/bin/xmodmap -e "keycode 37 = Alt_L" & # Control_L
+    # sleep 5 && ${pkgs.xorg.xmodmap}/bin/xmodmap -e "keycode 64 = Control_L" & # Alt_L
+
+  # Keyring
+  # programs.seahorse.enable = true;
+  # services.gnome.gnome-keyring.enable = true;
 
   environment.systemPackages = with pkgs; [
     # WM Utils

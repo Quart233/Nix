@@ -7,6 +7,7 @@
 {
   imports =
     [
+      # Platform Settings.
       ./hardware-configuration.nix # Include the results of the hardware scan.
       ./modules/zram.nix
       ./modules/udev.nix
@@ -75,6 +76,5 @@
   # nix
   # nix.settings.substituters = [ "https://mirrors.tuna.tsinghua.edu.cn/nix-channel/store" ];
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
-
-  system.stateVersion = "25.05"; # Did you read the comment?
+  system.stateVersion = "25.11"; # Did you read the comment?
 }
