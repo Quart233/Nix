@@ -35,6 +35,24 @@
   users.users.kuaizi = {
     isNormalUser = true;
     extraGroups = [ "wheel" ]; # Enable ‘sudo’ for the user.
+    packages = with pkgs; [
+      # Utillities
+      pv
+      duf
+      tmux
+
+      # Kubernetes
+      k9s
+      kubectl
+      kubernetes-helm
+
+      # Hardware Tools
+      htop
+      btop
+      hwloc
+      nvme-cli
+      powertop
+    ];
   };
 
   # OpenSSH
@@ -48,6 +66,7 @@
   time.timeZone = "Asia/Shanghai";
 
   programs.firefox.enable = true;
+  programs.chromium.enable = true;
 
   # List packages installed in system profile.
   # You can use https://search.nixos.org/ to find more packages (and options).
