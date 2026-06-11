@@ -30,6 +30,24 @@
   users.users.kuaizi = {
     isNormalUser = true;
     extraGroups = [ "wheel" ]; # Enable ‘sudo’ for the user.
+    packages = with pkgs; [
+      # Utillities
+      pv
+      duf
+      tmux
+
+      # Kubernetes
+      k9s
+      kubectl
+      kubernetes-helm
+
+      # Hardware Tools
+      htop
+      btop
+      hwloc
+      nvme-cli
+      powertop
+    ];
   };
 
   # OpenSSH
