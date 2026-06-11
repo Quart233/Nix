@@ -1,11 +1,12 @@
+
 { config, pkgs, lib, NixVirt, ... }:
 
 let
   # ... (keep btrfsUUID as-is)
-  btrfsUUID = "12345678-1234-1234-1234-123456789abc";  # Your real BTRFS UUID
+  btrfsUUID = "7dc8a70b-59ec-4f60-a064-de313bb5e60c";
 
   # NEW: Use output from `uuidgen`
-  poolUUID = "f47ac10b-58cc-4372-a567-0e02b2c3d479";  # Paste here!
+  poolUUID = "20cd011a-53d7-41c0-8d35-313eaba090da";
 in
 {
   # ----------------------------------------------------------------------
@@ -16,13 +17,6 @@ in
     package = pkgs.qemu_kvm;
     runAsRoot = true;
     swtpm.enable = true;
-  };
-  virtualisation.libvirtd.qemu.ovmf = { # not needed in NixOS 25.11 since https://github.com/NixOS/nixpkgs/pull/421549
-    enable = true;
-    packages = [(pkgs.OVMF.override {
-      secureBoot = true;
-      tpmSupport = true;
-    }).fd];
   };
 
   # ----------------------------------------------------------------------
@@ -41,43 +35,47 @@ in
   # ----------------------------------------------------------------------
   # 3. Declarative libvirt storage pool (uses NixVirt)
   # ----------------------------------------------------------------------
-  virtualisation.libvirt = {
-    enable = true;                     # activates NixVirt
-    connections."qemu:///system" = {
-      pools = [
+  virtualisation.libvirt.enable = true;
+  virtualisation.libvirt.connections."qemu:///system".pools =
+  [
+    {
+      # ... pool definition ...
+      definition = NixVirt.lib.pool.writeXML {
+        name = "btrfs-pool";
+        uuid = poolUUID;
+        type = "dir";  # Use "dir" for pre-mounted or "fs" for block.
+        target.path = "/var/lib/libvirt/btrfs-pool";
+      };
+      active = true;
+      restart = true;  # Restart if definition changes
+
+      # ... volume definition ...
+      volumes = [];
+    }
+  ];
+
+  virtualisation.libvirt.connections."qemu:///system".networks =
+  [
+    {
+      definition = NixVirt.lib.network.writeXML (NixVirt.lib.network.templates.bridge
         {
-          # ... pool definition ...
-          definition = NixVirt.lib.pool.writeXML {
-            name = "btrfs-pool";
-            uuid = poolUUID;
-            type = "dir";  # Use "dir" for pre-mounted or "fs" for block.
-            target.path = "/var/lib/libvirt/btrfs-pool";
-          };
-          active = true;
-          restart = true;  # Restart if definition changes
+          uuid = "70b08691-28dc-4b47-90a1-45bbeac9ab5a";
+          subnet_byte = 71;
+        });
+      active = true;
+    }
+  ];
 
-          # ... volume definition ...
-          volumes = [
-            {
-              present = true;
-              definition = NixVirt.lib.volume.writeXML {
-                name = "vm-disk.qcow2";
-                capacity = { count = 20; unit = "GiB"; };
-                format.type = "qcow2";  # Recommended for VMs
-              };
-            }
-          ];
-        }
-      ];
-    };
-  };
-
-  users.users.kuaizi.extraGroups = ["libvirtd"];
   boot.kernelParams = [
     "hugepagesz=1G"
     "hugepages=16"
     "amd_iommu=on"
     "iommu=pt"
     "vfio-pci.ids=1002:743f"
+  ];
+
+  users.users.kuaizi.extraGroups = ["libvirtd"];
+  environment.systemPackages = with pkgs; [
+    virt-viewer
   ];
 }
