@@ -1,3 +1,4 @@
+
 { config, pkgs, lib, NixVirt, ... }:
 
 let
@@ -63,6 +64,14 @@ in
         });
       active = true;
     }
+  ];
+
+  boot.kernelParams = [
+    "hugepagesz=1G"
+    "hugepages=16"
+    "amd_iommu=on"
+    "iommu=pt"
+    "vfio-pci.ids=1002:743f"
   ];
 
   users.users.kuaizi.extraGroups = ["libvirtd"];

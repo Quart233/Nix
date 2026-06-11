@@ -8,29 +8,23 @@
   imports =
     [
       # Platform Settings.
-      ./hardware-configuration.nix # Include the results of the hardware scan.
       ./modules/zram.nix
-      ./modules/udev.nix
-      ./modules/direnv.nix
-      ./modules/powersave.nix
       ./modules/networking.nix
 
       # WM Backlight & Inputs
       ./modules/dwm.nix
 
       # Preferences (post-install)
-      ./modules/user.nix
       ./modules/i18n.nix
 
       # Advanced (post-install)
       ./modules/snapper.nix
       ./modules/podman.nix
       ./modules/libvirtd.nix
-      ./modules/windows10.nix
     ];
 
   # Define your hostname.
-  networking.hostName = "Z16";
+  networking.hostName = "ThinkpadX1";
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.kuaizi = {
@@ -44,13 +38,6 @@
   # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
-  boot.kernelParams = [
-    "hugepagesz=1G"
-    "hugepages=16"
-    "amd_iommu=on"
-    "iommu=pt"
-    "vfio-pci.ids=1002:743f"
-  ];
 
   # Set your time zone.
   time.timeZone = "Asia/Shanghai";
@@ -65,13 +52,7 @@
     curl
     fish
     neovim
-    busybox
     pciutils
-    compsize
-    alsa-utils
-    libva-utils
-    exfatprogs
-    smartmontools
   ];
 
   # nix

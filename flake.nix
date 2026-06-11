@@ -23,6 +23,7 @@
         specialArgs = { inherit NixVirt; };
 
         modules = [
+          ./hardware-configuration.nix # Include the results of the hardware scan.
           ./configuration.nix
 
           # ---- Import the NixVirt module ----
