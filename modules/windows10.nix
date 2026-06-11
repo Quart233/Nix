@@ -31,16 +31,6 @@
           target = { dev = "vda"; bus = "virtio"; };
         }];
 
-        firmware = {
-          loader = {
-            path = "/run/libvirt/nix-ovmf/OVMF_CODE.fd";
-            readonly = true;
-          };
-          nvram = {
-            template = "/run/libvirt/nix-ovmf/OVMF_VARS.fd";
-          };
-        };
-
         features = {
           hyperv = true;           # Improve Windows performance
           kvmHidden = true;        # Hide KVM spec features
