@@ -18,7 +18,7 @@
       ./modules/dwm.nix
 
       # Preferences (post-install)
-      ./modules/user.nix
+      ./modules/datagrip.nix
       ./modules/i18n.nix
 
       # Advanced (post-install)
