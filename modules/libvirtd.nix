@@ -73,4 +73,11 @@ in
   };
 
   users.users.kuaizi.extraGroups = ["libvirtd"];
+  boot.kernelParams = [
+    "hugepagesz=1G"
+    "hugepages=16"
+    "amd_iommu=on"
+    "iommu=pt"
+    "vfio-pci.ids=1002:743f"
+  ];
 }
