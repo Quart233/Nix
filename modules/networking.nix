@@ -13,6 +13,9 @@
         key_mgmt=NONE
       '';
     };
+    "Example" = {
+      psk = "password";
+    };
   };
 
   # Configure network proxy if necessary
