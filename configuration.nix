@@ -66,7 +66,6 @@
   time.timeZone = "Asia/Shanghai";
 
   programs.firefox.enable = true;
-  programs.chromium.enable = true;
 
   # List packages installed in system profile.
   # You can use https://search.nixos.org/ to find more packages (and options).
