@@ -31,6 +31,8 @@
           target = { dev = "vda"; bus = "virtio"; };
         }];
 
+        nvram_path = "/var/lib/libvirt/qemu/nvram/windows10-dgpu_VARS.fd";
+
         features = {
           hyperv = true;           # Improve Windows performance
           kvmHidden = true;        # Hide KVM spec features
