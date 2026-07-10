@@ -9,7 +9,7 @@
     [
       # Platform Settings.
       ./modules/zram.nix
-      ./modules/udev.nix
+      ./modules/keymap.nix
       ./modules/direnv.nix
       ./modules/powersave.nix
       ./modules/networking.nix
