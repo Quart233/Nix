@@ -45,6 +45,7 @@
     GTK_IM_MODULE = "fcitx";
     QT_IM_MODULE = "fcitx";
     QT_AUTO_SCREEN_SCALE_FACTOR = "0";
+    GPUI_X11_SCALE_FACTOR = "2";
   };
 
   # Swap trackpad left/right button.
